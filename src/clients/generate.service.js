@@ -24,15 +24,12 @@ class GenerateService extends BaseService {
     this.configuration = {};
   }
 
-  async create(images, allowFailure) {
+  async create(images) {
     return await Axios.post(`${this.baseURL}/${this.serviceRoute}`, images, {
       ...this.configuration,
     })
       .catch(error => {
         errors(error);
-        if (!allowFailure) {
-          throw error;
-        }
       });
   }
 }
