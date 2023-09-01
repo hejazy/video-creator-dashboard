@@ -44,7 +44,7 @@ export const PreviewerFun = ({
 
   return (
     <div className="previewer-class">
-      <canvas id="container" className='w-100'></canvas>
+      <canvas id="container"></canvas>
    </div>
 
   );

@@ -4,14 +4,16 @@ import {Slider, Previewer, Button} from '../../components'
 import {convertBase64} from "../../util/base64"
 import 'bootstrap/scss/bootstrap.scss';
 import { playHandlerActions } from '../../redux/play';
+import {GenerateServiceFactory} from '../../clients/generate.service'
+
+
+const genrateService = GenerateServiceFactory.getInstance()
+
 
 const HomeFunction = ({
   play,
   stop,
 }) => {
-  // useEffect(() => {
-
-  // }, []);
   const [images, setImages] = useState([]);
 
   const hiddenFileInput = useRef(null);
@@ -19,23 +21,22 @@ const HomeFunction = ({
   const handleNewImageChange = async event => {
     setImages([...images, {
       url: await convertBase64(event.target.files[0]),
-      file: event.target.files[0],
-      delay: Math.floor(Math.random() * 10000)
+      delay: Math.floor(Math.random() * 5000)
     }]);
   };
-  const uploadNewImage = event => {
+  const uploadNewImage = () => {
     hiddenFileInput.current.click();
   };
 
-  const generateImages = ()=>{
-
+  const generateImages = async ()=>{
+    await genrateService.create(images)
   }
 
 
 
   return (
     <div className='home-page'>
-      <div className='col-12'>
+      <div className='col-12 p-5 previewer-container'>
         <Previewer
           onFinish={stop}
           images={images}
