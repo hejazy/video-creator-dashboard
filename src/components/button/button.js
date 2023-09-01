@@ -11,7 +11,7 @@ function button({
   type,
 }) {
   return (
-    <div className="btnContClass">
+    <div className="button-class">
       <button
         data-testid='button'
         disabled={disabled}
