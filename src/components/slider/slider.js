@@ -5,7 +5,7 @@ const SCROLL_AMOUNT = 50
 
 export function Slider({
   images = [],
-  removeImage,
+  onRemoveImage,
 }) {
   let sliderRef = useRef(null);
   return (
@@ -29,7 +29,7 @@ export function Slider({
                 key={image?.id}
                 src={image?.url}
               />
-              <span onClick={() => removeImage(idx)}/>
+              <span onClick={() => onRemoveImage(idx)}/>
             </span>
           );
         })}

@@ -3,8 +3,11 @@ import { connect } from 'react-redux';
 import {Slider, Previewer, Button} from '../../components'
 import {convertBase64} from "../../util/base64"
 import 'bootstrap/scss/bootstrap.scss';
+import { playHandlerActions } from '../../redux/play';
 
 const HomeFunction = ({
+  play,
+  stop,
 }) => {
   // useEffect(() => {
 
@@ -24,10 +27,6 @@ const HomeFunction = ({
     hiddenFileInput.current.click();
   };
 
-
-  const playImages = ()=>{
-
-  }
   const generateImages = ()=>{
 
   }
@@ -38,13 +37,17 @@ const HomeFunction = ({
     <div className='home-page'>
       <div className='col-12'>
         <Previewer
+          onFinish={stop}
+          images={images}
+          key='previewer'
         />
       </div>
-      <div className='col-12 d-flex'>
+      <div className='col-12 d-md-flex d-inline-block'>
         <div className='col-12 col-md-8'>
           <Slider
             images={images}
-            removeImage={(idx)=> {
+            key='slider'
+            onRemoveImage={(idx)=> {
               images.splice(idx, 1);
               setImages([...images]);
             }}
@@ -66,7 +69,7 @@ const HomeFunction = ({
             classes='bg-primary w-100'
             value="Play" 
             disabled={!images.length}
-            onClick={playImages}
+            onClick={play}
           />
         </div>
         <div className='col-6 col-md-2'>
@@ -89,6 +92,8 @@ const addToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
+    play: ()=> dispatch(playHandlerActions.play()),
+    stop: ()=> dispatch(playHandlerActions.stop())
   };
 };
 export const Home = connect(
