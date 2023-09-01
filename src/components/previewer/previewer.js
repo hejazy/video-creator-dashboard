@@ -1,7 +1,7 @@
 import React from 'react';
 import './previewer.scss';
 
-export function Privewer({
+export function Previewer({
   images = [],
 }) {
   return (
