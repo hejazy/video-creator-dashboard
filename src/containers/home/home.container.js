@@ -53,7 +53,7 @@ const HomeFunction = ({
             }}
           />
         </div>
-        <div className='col-6 col-md-2'>
+        <div className='col-12 col-md-2'>
           <Button
             classes='bg-primary w-100'
             value="Upload"
@@ -72,7 +72,7 @@ const HomeFunction = ({
             onClick={play}
           />
         </div>
-        <div className='col-6 col-md-2'>
+        <div className='col-12 col-md-2'>
           <Button
             classes='bg-Secondary w-100'
             value="Generate" 
