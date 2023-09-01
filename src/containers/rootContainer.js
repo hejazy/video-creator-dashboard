@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { errorHandlerActions } from '../redux/ErrorHandler';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
 import 'bootstrap/scss/bootstrap.scss';
 
 import {
@@ -18,21 +17,14 @@ const rootContainer = ({
   errorHanlder,
 }) => {
 
-  let [title, setTitle] = useState('');
-
-  useEffect(() => {
-    setTitle(translate('company-approval'));
-  }
-  , []);
-
-  document.title = translate(title);
+  document.title = "Video Creator";
 
   return (
     <div>
       <Router>
-        <Switch>
-          <Route exact path='/' component={Home} />
-        </Switch>
+        <Routes>
+          <Route path="*" element={<Home/>}/>
+        </Routes>
         {errorHanlder.DISPLAY_ERROR_MESSAGE_BOOLEAN && <ErrorHandlingModal/>}
       </Router>
     </div>
