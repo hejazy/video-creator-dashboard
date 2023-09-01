@@ -17,7 +17,17 @@ export const PreviewerFun = ({
       for(let image of images){
         const currentImage = new Image();
         currentImage.onload = function() {
-          ctx.drawImage(this, 0, 0);
+          ctx.clearRect(0, 0, c.width, c.height);
+          var wrh = currentImage.width / currentImage.height;
+          var newWidth = c.width;
+          var newHeight = newWidth / wrh;
+          if (newHeight > c.height) {
+            newHeight = c.height;
+            newWidth = newHeight * wrh;
+          }
+          var xOffset = newWidth < c.width ? ((c.width - newWidth) / 2) : 0;
+          var yOffset = newHeight < c.height ? ((c.height - newHeight) / 2) : 0;
+        	ctx.drawImage(this, xOffset, yOffset, newWidth, newHeight);
         };
         currentImage.src = image.url;
         await wait(image.delay)
