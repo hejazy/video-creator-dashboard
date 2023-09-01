@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState} from 'react';
+import React, { useRef, useState} from 'react';
 import { connect } from 'react-redux';
 import {Slider, Previewer, Button} from '../../components'
 import {convertBase64} from "../../util/base64"
 import 'bootstrap/scss/bootstrap.scss';
 import { playHandlerActions } from '../../redux/play';
 import {GenerateServiceFactory} from '../../clients/generate.service'
+import {uploadImage} from '../../clients/firebase.service'
 
 
 const genrateService = GenerateServiceFactory.getInstance()
@@ -19,8 +20,9 @@ const HomeFunction = ({
   const hiddenFileInput = useRef(null);
   
   const handleNewImageChange = async event => {
+    const url = await uploadImage(event.target.files[0])
     setImages([...images, {
-      url: await convertBase64(event.target.files[0]),
+      url,
       delay: Math.floor(Math.random() * 5000)
     }]);
   };

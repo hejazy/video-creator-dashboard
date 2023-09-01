@@ -8,10 +8,8 @@ export const PreviewerFun = ({
   play,
   onFinish,
 }) => {
-  console.log(play)
   const drawCanvas = async ()=> {
     if(play === true && images.length) {
-      console.log(play)
       const c = document.getElementById("container");
       const ctx = c.getContext("2d");
       for(let image of images){
@@ -31,7 +29,6 @@ export const PreviewerFun = ({
         };
         currentImage.src = image.url;
         await wait(image.delay)
-        console.log(image.delay)
       }
     }
     onFinish();
