@@ -5,7 +5,7 @@ const SCROLL_AMOUNT = 50
 
 export function Slider({
   images = [],
-  removeImage,
+  onRemoveImage,
 }) {
   let sliderRef = useRef(null);
   return (
@@ -17,16 +17,20 @@ export function Slider({
           container.scrollLeft -= SCROLL_AMOUNT;
         }}
       >
+        &lt;
       </button>
       <div className="images-container" ref={sliderRef}>
-        {images?.map((image) => {
+        {images?.map((image, idx) => {
           return (
-            <img
-              className="image"
-              alt="sliderImage"
-              key={image?.id}
-              src={image?.url}
-            />
+            <span className='position-relative image-container'>
+              <img
+                className="image"
+                alt="sliderImage"
+                key={image?.id}
+                src={image?.url}
+              />
+              <span onClick={() => onRemoveImage(idx)}/>
+            </span>
           );
         })}
       </div>
@@ -37,6 +41,7 @@ export function Slider({
           container.scrollLeft += SCROLL_AMOUNT;
         }}
       >
+        &gt;
       </button>
    </div>
 
