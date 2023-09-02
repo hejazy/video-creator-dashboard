@@ -18,11 +18,9 @@ $ npm run start
 ```
 
 - **Finaly:** you can access the dashboard from this [Link](http://localhost:3000/).
-```bash
-$ npm run start
-```
+
 
 **Please reach me if you have any qustion.**
 
 
-Thank you and good luck! 🙏
+Thank you! 🙏
