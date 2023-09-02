@@ -25,7 +25,7 @@ class GenerateService extends BaseService {
   }
 
   async create(images) {
-    return await Axios.post(`${this.baseURL}/${this.serviceRoute}`, {images})
+    return await Axios.post(`${this.baseURL}/${this.serviceRoute}`, {images}, { responseType: 'blob' })
       .catch(error => {
         errors(error);
       });
