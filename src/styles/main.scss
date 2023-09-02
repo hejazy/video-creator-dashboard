@@ -56,3 +56,8 @@ span {
 p {
   color: $content-color;
 }
+
+body, html{
+  position: relative;
+  min-height: 100%;
+}

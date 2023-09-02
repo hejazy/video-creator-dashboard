@@ -1,6 +1,6 @@
 import React, { useRef, useState} from 'react';
 import { connect } from 'react-redux';
-import {Slider, Previewer, Button} from '../../components'
+import {Slider, Previewer, Button, Loader} from '../../components'
 import 'bootstrap/scss/bootstrap.scss';
 import './home.scss';
 import { playHandlerActions } from '../../redux/play';
@@ -16,24 +16,28 @@ const HomeFunction = ({
   stop,
 }) => {
   const [images, setImages] = useState([]);
-
+  const [loading, setLoading] = useState(false);
   const hiddenFileInput = useRef(null);
   
   const handleNewImageChange = async event => {
+    await setLoading(true)
     const url = await uploadImage(event.target.files[0])
     setImages([...images, {
       url,
       delay: Math.floor(Math.random() * 5000)
     }]);
+    await setLoading(false)
+
   };
   const uploadNewImage = () => {
     hiddenFileInput.current.click();
   };
 
   const generateImages = async ()=>{
+    await setLoading(true)
     const response = await genrateService.create(images)
     const href = URL.createObjectURL(response.data);
-
+    await setLoading(false)
     const link = document.createElement('a');
     link.href = href;
     link.setAttribute('download', 'new-video.mp4');
@@ -93,6 +97,7 @@ const HomeFunction = ({
           />
         </div>
       </div>
+      {loading ? <Loader/> : ""}
       
     </div>
   );
