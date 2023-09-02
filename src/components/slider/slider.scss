@@ -8,6 +8,7 @@
     justify-content: center;
 
     .images-container {
+      width: calc(100% - 40px);
         display: flex;
         overflow-y: scroll;
         scroll-behavior: smooth;

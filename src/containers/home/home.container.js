@@ -1,8 +1,8 @@
 import React, { useRef, useState} from 'react';
 import { connect } from 'react-redux';
 import {Slider, Previewer, Button} from '../../components'
-import {convertBase64} from "../../util/base64"
 import 'bootstrap/scss/bootstrap.scss';
+import './home.scss';
 import { playHandlerActions } from '../../redux/play';
 import {GenerateServiceFactory} from '../../clients/generate.service'
 import {uploadImage} from '../../clients/firebase.service'
@@ -54,7 +54,7 @@ const HomeFunction = ({
           key='previewer'
         />
       </div>
-      <div className='col-12 d-md-flex d-inline-block'>
+      <div className='col-12 d-md-flex d-inline-block controles'>
         <div className='col-12 col-md-8'>
           <Slider
             images={images}
@@ -67,7 +67,7 @@ const HomeFunction = ({
         </div>
         <div className='col-12 col-md-2'>
           <Button
-            classes='bg-primary w-100'
+            classes='bg-primary w-100 height-100'
             value="Upload"
             onClick={uploadNewImage}
           />
@@ -78,7 +78,7 @@ const HomeFunction = ({
             style={{display: 'none'}}
           />
           <Button
-            classes='bg-primary w-100'
+            classes='bg-primary w-100 height-100'
             value="Play" 
             disabled={!images.length}
             onClick={play}
@@ -86,7 +86,7 @@ const HomeFunction = ({
         </div>
         <div className='col-12 col-md-2'>
           <Button
-            classes='bg-Secondary w-100'
+            classes='bg-Secondary w-100 height-200'
             value="Generate" 
             disabled={!images.length}
             onClick={generateImages}
